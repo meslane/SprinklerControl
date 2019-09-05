@@ -1,0 +1,70 @@
+{
+	"valves": [
+		{
+			"name": "valve 1",
+			"area": null,
+			"runtimes": [
+				{
+					"startdate": 0
+					"starttime": "10:00AM",
+					"duration": 30
+				}
+			]
+		}
+		{
+			"name": "valve 2",
+			"area": null,
+			"runtimes": [
+				{
+					"startdate": 0
+					"starttime": "10:00AM",
+					"duration": 30
+				}
+			]
+		}
+		{
+			"name": "valve 3",
+			"area": null,
+			"runtimes": [
+				{
+					"startdate": 0
+					"starttime": "10:00AM",
+					"duration": 30
+				}
+			]
+		}
+		{
+			"name": "valve 4",
+			"area": null,
+			"runtimes": [
+				{
+					"startdate": 0
+					"starttime": "10:00AM",
+					"duration": 30
+				}
+			]
+		}
+		{
+			"name": "valve 5",
+			"area": null,
+			"runtimes": [
+				{
+					"startdate": 0
+					"starttime": "10:00AM",
+					"duration": 30
+				}
+			]
+		}
+		{
+			"name": "valve 6",
+			"area": null,
+			"runtimes": [
+				{
+					"startdate": 0
+					"starttime": "10:00AM",
+					"duration": 30
+				}
+			]
+		}
+	]
+}
