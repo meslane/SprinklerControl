@@ -1,0 +1,11 @@
+Partlist exported from C:/Users/Merrick/Documents/EAGLE/projects/Sprinkler Relay Board/relaysch.sch at 9/11/2019 10:16 AM
+
+Qty Value Device       Package  Parts                              Description        MF MPN OC_FARNELL OC_NEWARK POPULARITY
+6         LED5MM       LED5MM   LED1, LED2, LED3, LED4, LED5, LED6 LED                                                      
+1         PINHD-1X2    1X02     5VDC                               PIN HEADER                                               
+1         PINHD-1X8BIG 1X08-BIG GPIOIN                             PIN HEADER                                               
+1         ULN2803A     DIL18    ULN2803A                           DRIVER ARRAY                                   5         
+1         W237-02P     W237-132 24VAC                              WAGO SREW CLAMP           unknown    unknown             
+1         W237-08P     W237-8P  24VACOUT                           WAGO SREW CLAMP           unknown    unknown             
+6   1k    FLIPFLOP-RES 0805-THM R1, R2, R3, R4, R5, R6             Flip Flop resistor                                       
+6   G5LE  G5LE         G5LE     K1, K2, K3, K4, K5, K6             RELAY                     unknown    unknown             

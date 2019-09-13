@@ -5,64 +5,64 @@
 			"area": null,
 			"runtimes": [
 				{
-					"startdate": 0
-					"starttime": "10:00AM",
-					"duration": 30
+					"startdate": [0, 1, 2, 3, 4, 5, 6],
+					"starttime": "06:00AM",
+					"endtime": "06:10AM"
 				}
 			]
-		}
+		},
 		{
 			"name": "valve 2",
 			"area": null,
 			"runtimes": [
 				{
-					"startdate": 0
-					"starttime": "10:00AM",
-					"duration": 30
+					"startdate": [0, 1, 2, 3, 4, 5, 6],
+					"starttime": "6:10AM",
+					"endtime": "06:20AM"
 				}
 			]
-		}
+		},
 		{
 			"name": "valve 3",
 			"area": null,
 			"runtimes": [
 				{
-					"startdate": 0
-					"starttime": "10:00AM",
-					"duration": 30
+					"startdate": [0, 1, 2, 3, 4, 5, 6],
+					"starttime": "06:20AM",
+					"endtime": "06:30AM"
 				}
 			]
-		}
+		},
 		{
 			"name": "valve 4",
 			"area": null,
 			"runtimes": [
 				{
-					"startdate": 0
-					"starttime": "10:00AM",
-					"duration": 30
+					"startdate": [0, 1, 2, 3, 4, 5, 6],
+					"starttime": "06:40AM",
+					"endtime": "06:50AM"
 				}
 			]
-		}
+		},
 		{
 			"name": "valve 5",
 			"area": null,
 			"runtimes": [
 				{
-					"startdate": 0
-					"starttime": "10:00AM",
-					"duration": 30
+					"startdate": [0, 1, 2, 3, 4, 5, 6],
+					"starttime": "06:50AM",
+					"endtime": "07:00AM"
 				}
 			]
-		}
+		},
 		{
 			"name": "valve 6",
 			"area": null,
 			"runtimes": [
 				{
-					"startdate": 0
-					"starttime": "10:00AM",
-					"duration": 30
+					"startdate": [0, 1, 2, 3, 4, 5, 6],
+					"starttime": "07:00AM",
+					"endtime": "07:10AM"
 				}
 			]
 		}
