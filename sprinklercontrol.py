@@ -11,7 +11,7 @@ class valve:
         self.name = name
         self.area = area
         self.runtimes = list()
-        self.line = gpiozero.GPIODevice(pin) #gpio pin number
+        self.line = gpiozero.OutputDevice(pin) #gpio pin number
         self.open = False
         self.override = False
         
