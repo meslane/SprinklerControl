@@ -1,13 +1,17 @@
 {
-	"valves": [
+	"lat": 38.89,
+    "long": -121.08,
+    "precipThreshold": 0.50,
+    "APIUpdateInterval": 600,
+    "valves": [
 		{
 			"name": "valve 1",
 			"area": null,
 			"runtimes": [
 				{
 					"startdate": [0, 1, 2, 3, 4, 5, 6],
-					"starttime": "06:00AM",
-					"endtime": "06:10AM"
+					"starttime": "04:00PM",
+					"endtime": "04:10PM"
 				}
 			]
 		},
@@ -17,8 +21,8 @@
 			"runtimes": [
 				{
 					"startdate": [0, 1, 2, 3, 4, 5, 6],
-					"starttime": "6:10AM",
-					"endtime": "06:20AM"
+					"starttime": "04:10PM",
+					"endtime": "04:20PM"
 				}
 			]
 		},
@@ -28,8 +32,8 @@
 			"runtimes": [
 				{
 					"startdate": [0, 1, 2, 3, 4, 5, 6],
-					"starttime": "06:20AM",
-					"endtime": "06:30AM"
+					"starttime": "04:20PM",
+					"endtime": "04:30PM"
 				}
 			]
 		},
@@ -39,8 +43,8 @@
 			"runtimes": [
 				{
 					"startdate": [0, 1, 2, 3, 4, 5, 6],
-					"starttime": "06:40AM",
-					"endtime": "06:50AM"
+					"starttime": "04:30PM",
+					"endtime": "04:40PM"
 				}
 			]
 		},
@@ -50,8 +54,8 @@
 			"runtimes": [
 				{
 					"startdate": [0, 1, 2, 3, 4, 5, 6],
-					"starttime": "06:50AM",
-					"endtime": "07:00AM"
+					"starttime": "04:40PM",
+					"endtime": "04:50PM"
 				}
 			]
 		},
@@ -61,8 +65,8 @@
 			"runtimes": [
 				{
 					"startdate": [0, 1, 2, 3, 4, 5, 6],
-					"starttime": "07:00AM",
-					"endtime": "07:10AM"
+					"starttime": "04:50PM",
+					"endtime": "05:00PM"
 				}
 			]
 		}
