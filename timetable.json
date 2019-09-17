@@ -7,6 +7,7 @@
 		{
 			"name": "valve 1",
 			"area": null,
+			"pin": 5
 			"runtimes": [
 				{
 					"startdate": [0, 1, 2, 3, 4, 5, 6],
@@ -18,6 +19,7 @@
 		{
 			"name": "valve 2",
 			"area": null,
+			"pin": 6
 			"runtimes": [
 				{
 					"startdate": [0, 1, 2, 3, 4, 5, 6],
@@ -29,6 +31,7 @@
 		{
 			"name": "valve 3",
 			"area": null,
+			"pin": 13
 			"runtimes": [
 				{
 					"startdate": [0, 1, 2, 3, 4, 5, 6],
@@ -40,6 +43,7 @@
 		{
 			"name": "valve 4",
 			"area": null,
+			"pin": 19
 			"runtimes": [
 				{
 					"startdate": [0, 1, 2, 3, 4, 5, 6],
@@ -51,6 +55,7 @@
 		{
 			"name": "valve 5",
 			"area": null,
+			"pin": 26
 			"runtimes": [
 				{
 					"startdate": [0, 1, 2, 3, 4, 5, 6],
@@ -62,6 +67,7 @@
 		{
 			"name": "valve 6",
 			"area": null,
+			"pin": 21
 			"runtimes": [
 				{
 					"startdate": [0, 1, 2, 3, 4, 5, 6],

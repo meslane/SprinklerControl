@@ -4,12 +4,14 @@ from urllib.request import urlopen
 from datetime import datetime
 from time import time
 from time import sleep
+import gpiozero
 
 class valve:
-    def __init__(self, name, area):
+    def __init__(self, name, area, pin):
         self.name = name
         self.area = area
         self.runtimes = list()
+        self.line = gpiozero.GPIODevice(pin) #gpio pin number
         self.open = False
         self.override = False
         
@@ -23,12 +25,12 @@ class valve:
         self.runtimes[k]['endtime'] = endtime
         
     def open_valve(self):
-        #TODO: put GPIO code
+        self.line.on()
         self.open = True
         print("opened {}".format(self.name))
         
     def close_valve(self):
-        #TODO: put GPIO code
+        self.line.off()
         self.open = False
         sleep(0.05) #sleep for 50ms to let the coil fully release
         print("closed {}".format(self.name))
@@ -42,7 +44,7 @@ with open("timetable.json", 'r') as j:
 v = list()
 n = 0
 for entry in timedata['valves']: #create all valve classes from .json file
-    v.append(valve(entry['name'], entry['area']))
+    v.append(valve(entry['name'], entry['area'], entry['pin']))
     for runtime in entry['runtimes']:
         if datetime.strptime(runtime['endtime'], '%I:%M%p') < datetime.strptime(runtime['starttime'], '%I:%M%p'):
             print("Warning: starttime occurs after endtime for {} - skipping entry".format(v[n].name))
