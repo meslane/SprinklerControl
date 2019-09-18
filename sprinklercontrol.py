@@ -5,6 +5,7 @@ from datetime import datetime
 from time import time
 from time import sleep
 import gpiozero
+import sys
 
 class valve:
     def __init__(self, name, area, pin):
@@ -34,6 +35,12 @@ class valve:
         self.open = False
         sleep(0.05) #sleep for 50ms to let the coil fully release
         print("closed {}".format(self.name))
+        
+    def toggle(self):
+        if self.open == True:
+            self.close_valve()
+        elif self.open == False:
+            self.open_valve()
 
 with open("key.txt", 'r') as k:
     key = k.read().strip()
@@ -41,15 +48,15 @@ with open("key.txt", 'r') as k:
 with open("timetable.json", 'r') as j:
     timedata = json.load(j)
 
-v = list()
+valves = list()
 n = 0
 for entry in timedata['valves']: #create all valve classes from .json file
-    v.append(valve(entry['name'], entry['area'], entry['pin']))
+    valves.append(valve(entry['name'], entry['area'], entry['pin']))
     for runtime in entry['runtimes']:
         if datetime.strptime(runtime['endtime'], '%I:%M%p') < datetime.strptime(runtime['starttime'], '%I:%M%p'):
-            print("Warning: starttime occurs after endtime for {} - skipping entry".format(v[n].name))
+            print("Warning: starttime occurs after endtime for {} - skipping entry".format(valves[n].name))
         else:
-            v[n].append_timetable(runtime['startdate'], runtime['starttime'], runtime['endtime'])
+            valves[n].append_timetable(runtime['startdate'], runtime['starttime'], runtime['endtime'])
     n += 1
 
 wapi = "https://api.darksky.net/forecast/{}/{},{}".format(key, timedata['lat'], timedata['long'])
@@ -68,7 +75,7 @@ while 1:
         lastapicall = time()
         print(precip)
         
-    for entry in v:
+    for entry in valves:
         for runtime in entry.runtimes:
             if int(datetime.today().weekday()) in runtime['startdate']:
                 if runtime['endtime'] == current and entry.open == True: 
@@ -81,3 +88,18 @@ while 1:
                     else:
                         print("Precipitation probability exceeds threshold, override {}".format(entry.name))
                         entry.override = True
+                        
+    if sys.stdin.read(1) != None: #if user presses enter
+        for entry in valves:
+            if entry.open == True:
+                state = "open"
+            else:
+                state = "closed"
+            print("{}: {}".format(entry.name, state))
+        try:
+            selection = str(input("Enter valve name to toggle, hit ENTER to exit: "))
+            for entry in valves:
+                if entry.name == selection:
+                    entry.toggle()
+        except ValueError:
+            pass
