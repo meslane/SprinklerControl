@@ -4,15 +4,14 @@ from urllib.request import urlopen
 from datetime import datetime
 from time import time
 from time import sleep
-import gpiozero
-import sys
+#import gpiozero
 
 class valve:
     def __init__(self, name, area, pin):
         self.name = name
         self.area = area
         self.runtimes = list()
-        self.line = gpiozero.OutputDevice(pin) #gpio pin number
+        #self.line = gpiozero.OutputDevice(pin) #gpio pin number
         self.open = False
         self.override = False
         
@@ -26,12 +25,12 @@ class valve:
         self.runtimes[k]['endtime'] = endtime
         
     def open_valve(self):
-        self.line.on()
+        #self.line.on()
         self.open = True
         print("opened {}".format(self.name))
         
     def close_valve(self):
-        self.line.off()
+        #self.line.off()
         self.open = False
         sleep(0.05) #sleep for 50ms to let the coil fully release
         print("closed {}".format(self.name))
@@ -63,33 +62,34 @@ wapi = "https://api.darksky.net/forecast/{}/{},{}".format(key, timedata['lat'], 
 lastapicall = 0
 precip = 0
 while 1:
-    current = str(datetime.fromtimestamp(time()).strftime('%I:%M%p'))
+    try:
+        current = str(datetime.fromtimestamp(time()).strftime('%I:%M%p'))
 
-    if int(time()) - int(lastapicall) > timedata['APIUpdateInterval']: 
-        print(current)
-        try:
-            data = json.loads(urlopen(wapi).read())
-            precip = data['currently']['precipProbability']
-        except urllib.error.URLError:
-            print("Error occured trying to connect to weather API")
-        lastapicall = time()
-        print(precip)
+        if int(time()) - int(lastapicall) > timedata['APIUpdateInterval']: 
+            print(current)
+            try:
+                data = json.loads(urlopen(wapi).read())
+                precip = data['currently']['precipProbability']
+            except urllib.error.URLError:
+                print("Error occured trying to connect to weather API")
+            lastapicall = time()
+            print(precip)
         
-    for entry in valves:
-        for runtime in entry.runtimes:
-            if int(datetime.today().weekday()) in runtime['startdate']:
-                if runtime['endtime'] == current and entry.open == True: 
-                    entry.close_valve()
-                elif runtime['endtime'] == current and entry.override == True: 
-                    entry.override = False #reset override after intended cycle is over
-                elif runtime['starttime'] == current and entry.open == False and entry.override == False:
-                    if precip <= timedata['precipThreshold']:
-                        entry.open_valve()
-                    else:
-                        print("Precipitation probability exceeds threshold, override {}".format(entry.name))
-                        entry.override = True
+        for entry in valves:
+            for runtime in entry.runtimes:
+                if int(datetime.today().weekday()) in runtime['startdate']:
+                    if runtime['endtime'] == current and entry.open == True: 
+                        entry.close_valve()
+                    elif runtime['endtime'] == current and entry.override == True: 
+                        entry.override = False #reset override after intended cycle is over
+                    elif runtime['starttime'] == current and entry.open == False and entry.override == False:
+                        if precip <= timedata['precipThreshold']:
+                            entry.open_valve()
+                        else:
+                            print("Precipitation probability exceeds threshold, override {}".format(entry.name))
+                            entry.override = True
                         
-    if sys.stdin.read(1) != None: #if user presses enter
+    except KeyboardInterrupt: #if user presses CTL + C
         for entry in valves:
             if entry.open == True:
                 state = "open"
@@ -97,9 +97,13 @@ while 1:
                 state = "closed"
             print("{}: {}".format(entry.name, state))
         try:
-            selection = str(input("Enter valve name to toggle, hit ENTER to exit: "))
+            selection = str(input("Enter valve name to toggle, hit ENTER to exit, or type 'exit' to close program: "))
             for entry in valves:
                 if entry.name == selection:
                     entry.toggle()
-        except ValueError:
+            if selection == "exit":
+                for entry in valves:
+                    entry.close_valve() #close all valves for safe shutdown
+                exit(0)
+        except (ValueError, EOFError) as e:
             pass
