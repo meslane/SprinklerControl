@@ -4,14 +4,14 @@ from urllib.request import urlopen
 from datetime import datetime
 from time import time
 from time import sleep
-#import gpiozero
+import gpiozero
 
 class valve:
     def __init__(self, name, area, pin):
         self.name = name
         self.area = area
         self.runtimes = list()
-        #self.line = gpiozero.OutputDevice(pin) #gpio pin number
+        self.line = gpiozero.OutputDevice(pin) #gpio pin number
         self.open = False
         self.override = False
         
@@ -25,12 +25,12 @@ class valve:
         self.runtimes[k]['endtime'] = endtime
         
     def open_valve(self):
-        #self.line.on()
+        self.line.on()
         self.open = True
         print("opened {}".format(self.name))
         
     def close_valve(self):
-        #self.line.off()
+        self.line.off()
         self.open = False
         sleep(0.05) #sleep for 50ms to let the coil fully release
         print("closed {}".format(self.name))
